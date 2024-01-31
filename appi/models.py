@@ -2,6 +2,7 @@ from django.db import models
 import string
 import random
 
+#Genarating Room's Code
 def generate_unique_code():
     length=6
 
@@ -11,7 +12,7 @@ def generate_unique_code():
             break
     return code
 
-
+#Room Model
 class Room(models.Model):
     code=models.CharField(max_length=8,default=generate_unique_code,unique=True)
     host=models.CharField(max_length=50,unique=True)
