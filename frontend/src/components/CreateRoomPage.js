@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
 import { Link } from "react-router-dom";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 
 export default class CreateRoomPage extends Component {
@@ -63,7 +63,7 @@ export default class CreateRoomPage extends Component {
         <Grid item xs={12} align="center">
           <FormControl component="fieldset">
             <FormHelperText>
-              <div align="center">Guest Control of Playback State</div>
+              <span align="center">Guest Control of Playback State</span>
             </FormHelperText>
             <RadioGroup
               row
@@ -98,7 +98,7 @@ export default class CreateRoomPage extends Component {
               }}
             />
             <FormHelperText>
-              <div align="center">Votes Required To Skip Song</div>
+              <span align="center">Votes Required To Skip Song</span>
             </FormHelperText>
           </FormControl>
         </Grid>
