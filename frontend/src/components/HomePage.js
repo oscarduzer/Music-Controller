@@ -7,7 +7,7 @@ import {
   Routes,
 } from "react-router-dom";
 
-export default class HomePage extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
   }
@@ -24,3 +24,5 @@ export default class HomePage extends Component {
     );
   }
 }
+
+export default HomePage;

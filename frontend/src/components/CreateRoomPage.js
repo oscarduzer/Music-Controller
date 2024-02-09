@@ -10,8 +10,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-
-export default class CreateRoomPage extends Component {
+class CreateRoomPage extends Component {
   defaultVotes = 2;
 
   constructor(props) {
@@ -56,7 +55,7 @@ export default class CreateRoomPage extends Component {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
+          <Typography variant="h1">
             Create A Room
           </Typography>
         </Grid>
@@ -120,3 +119,5 @@ export default class CreateRoomPage extends Component {
     );
   }
 }
+
+export default CreateRoomPage;

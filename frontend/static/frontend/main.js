@@ -26318,7 +26318,7 @@ function persistAppliedTransitions(_window, transitions) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ CreateRoomPage)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -26390,8 +26390,7 @@ class CreateRoomPage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       xs: 12,
       align: "center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      component: "h4",
-      variant: "h4"
+      variant: "h1"
     }, "Create A Room")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_1__["default"], {
       item: true,
       xs: 12,
@@ -26455,6 +26454,7 @@ class CreateRoomPage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     }, "Back")));
   }
 }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateRoomPage);
 
 /***/ }),
 
@@ -26467,7 +26467,7 @@ class CreateRoomPage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ HomePage)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -26496,6 +26496,7 @@ class HomePage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     })));
   }
 }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomePage);
 
 /***/ }),
 
@@ -26508,7 +26509,7 @@ class HomePage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ RoomJoinPage)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -26521,6 +26522,7 @@ class RoomJoinPage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "This is the room join page");
   }
 }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoomJoinPage);
 
 /***/ }),
 
