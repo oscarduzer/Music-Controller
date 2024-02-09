@@ -55,7 +55,7 @@ class CreateRoomPage extends Component {
     return (
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
-          <Typography variant="h1">
+          <Typography variant="h3">
             Create A Room
           </Typography>
         </Grid>
