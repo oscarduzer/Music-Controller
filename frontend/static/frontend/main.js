@@ -26473,8 +26473,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _RoomJoinPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RoomJoinPage */ "./src/components/RoomJoinPage.js");
 /* harmony import */ var _CreateRoomPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreateRoomPage */ "./src/components/CreateRoomPage.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _Room__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Room */ "./src/components/Room.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+
 
 
 
@@ -26484,19 +26486,65 @@ class HomePage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     super(props);
   }
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
       path: "/",
       element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "This is the home page")
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
       path: "/join",
       element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RoomJoinPage__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
       path: "/create",
       element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreateRoomPage__WEBPACK_IMPORTED_MODULE_2__["default"], null)
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+      path: "/room/:roomCode",
+      element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Room__WEBPACK_IMPORTED_MODULE_3__["default"], null)
     })));
   }
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomePage);
+
+/***/ }),
+
+/***/ "./src/components/Room.js":
+/*!********************************!*\
+  !*** ./src/components/Room.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+
+
+const Room = () => {
+  const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    votesToSkip: 2,
+    guestCanPause: false,
+    isHost: false
+  });
+  let {
+    roomCode
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    getRoomDetails();
+  }, [roomCode]);
+  const getRoomDetails = () => {
+    fetch("/api/get-room" + "?code=" + roomCode).then(response => response.json()).then(data => {
+      setState({
+        votesToSkip: data.vote_to_skip,
+        guestCanPause: data.guest_can_pause,
+        isHost: data.is_host
+      });
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Votes: ", state.votesToSkip), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Guest Can Pause: ", state.guestCanPause.toString()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Host: ", state.isHost.toString()));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Room);
 
 /***/ }),
 
@@ -26513,14 +26561,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/TextField/TextField.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 
-class RoomJoinPage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "This is the room join page");
-  }
+
+
+function RoomJoinPage() {
+  const [roomCode, setRoomCode] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+  const handleTextFieldChange = e => {
+    setRoomCode(e.target.value);
+  };
+  const roomButtonPressed = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        code: roomCode
+      })
+    };
+    fetch("/api/join-room", requestOptions).then(response => {
+      if (response.ok) {
+        navigate(`/room/${roomCode}`);
+      } else {
+        setError("Room not found.");
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    container: true,
+    spacing: 1
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "h4",
+    component: "h4"
+  }, "Join a Room")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    error: error.length > 0,
+    label: "Code",
+    placeholder: "Enter a Room Code",
+    value: roomCode,
+    helperText: error,
+    variant: "outlined",
+    onChange: handleTextFieldChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "contained",
+    color: "primary",
+    onClick: roomButtonPressed
+  }, "Enter Room")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "contained",
+    color: "secondary",
+    to: "/",
+    component: react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link
+  }, "Back")));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoomJoinPage);
 
