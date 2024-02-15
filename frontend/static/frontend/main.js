@@ -5251,6 +5251,330 @@ const touchRippleClasses = (0,_mui_utils_generateUtilityClasses__WEBPACK_IMPORTE
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/ButtonGroup/ButtonGroup.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@mui/material/ButtonGroup/ButtonGroup.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _mui_base_composeClasses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/base/composeClasses */ "./node_modules/@mui/utils/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/colorManipulator.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/getValidReactChildren/getValidReactChildren.js");
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@mui/material/utils/capitalize.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./buttonGroupClasses */ "./node_modules/@mui/material/ButtonGroup/buttonGroupClasses.js");
+/* harmony import */ var _ButtonGroupContext__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ButtonGroupContext */ "./node_modules/@mui/material/ButtonGroup/ButtonGroupContext.js");
+/* harmony import */ var _ButtonGroupButtonContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ButtonGroupButtonContext */ "./node_modules/@mui/material/ButtonGroup/ButtonGroupButtonContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+'use client';
+
+
+
+const _excluded = ["children", "className", "color", "component", "disabled", "disableElevation", "disableFocusRipple", "disableRipple", "fullWidth", "orientation", "size", "variant"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+const overridesResolver = (props, styles) => {
+  const {
+    ownerState
+  } = props;
+  return [{
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: styles.grouped
+  }, {
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: styles[`grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.orientation)}`]
+  }, {
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: styles[`grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.variant)}`]
+  }, {
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: styles[`grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.variant)}${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.orientation)}`]
+  }, {
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: styles[`grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.variant)}${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.color)}`]
+  }, {
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].firstButton}`]: styles.firstButton
+  }, {
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].lastButton}`]: styles.lastButton
+  }, {
+    [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: styles.middleButton
+  }, styles.root, styles[ownerState.variant], ownerState.disableElevation === true && styles.disableElevation, ownerState.fullWidth && styles.fullWidth, ownerState.orientation === 'vertical' && styles.vertical];
+};
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    color,
+    disabled,
+    disableElevation,
+    fullWidth,
+    orientation,
+    variant
+  } = ownerState;
+  const slots = {
+    root: ['root', variant, orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth', disableElevation && 'disableElevation'],
+    grouped: ['grouped', `grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(orientation)}`, `grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(variant)}`, `grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(variant)}${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(orientation)}`, `grouped${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(variant)}${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(color)}`, disabled && 'disabled'],
+    firstButton: ['firstButton'],
+    lastButton: ['lastButton'],
+    middleButton: ['middleButton']
+  };
+  return (0,_mui_base_composeClasses__WEBPACK_IMPORTED_MODULE_7__["default"])(slots, _buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__.getButtonGroupUtilityClass, classes);
+};
+const ButtonGroupRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__["default"])('div', {
+  name: 'MuiButtonGroup',
+  slot: 'Root',
+  overridesResolver
+})(({
+  theme,
+  ownerState
+}) => (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+  display: 'inline-flex',
+  borderRadius: (theme.vars || theme).shape.borderRadius
+}, ownerState.variant === 'contained' && {
+  boxShadow: (theme.vars || theme).shadows[2]
+}, ownerState.disableElevation && {
+  boxShadow: 'none'
+}, ownerState.fullWidth && {
+  width: '100%'
+}, ownerState.orientation === 'vertical' && {
+  flexDirection: 'column'
+}, {
+  [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    minWidth: 40,
+    '&:hover': (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.variant === 'contained' && {
+      boxShadow: 'none'
+    })
+  }, ownerState.variant === 'contained' && {
+    boxShadow: 'none'
+  }),
+  [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].firstButton},& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.orientation === 'horizontal' && {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0
+  }, ownerState.orientation === 'vertical' && {
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0
+  }, ownerState.variant === 'text' && ownerState.orientation === 'horizontal' && {
+    borderRight: theme.vars ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
+    [`&.${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].disabled}`]: {
+      borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`
+    }
+  }, ownerState.variant === 'text' && ownerState.orientation === 'vertical' && {
+    borderBottom: theme.vars ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
+    [`&.${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].disabled}`]: {
+      borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`
+    }
+  }, ownerState.variant === 'text' && ownerState.color !== 'inherit' && {
+    borderColor: theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)` : (0,_mui_system__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette[ownerState.color].main, 0.5)
+  }, ownerState.variant === 'outlined' && ownerState.orientation === 'horizontal' && {
+    borderRightColor: 'transparent'
+  }, ownerState.variant === 'outlined' && ownerState.orientation === 'vertical' && {
+    borderBottomColor: 'transparent'
+  }, ownerState.variant === 'contained' && ownerState.orientation === 'horizontal' && {
+    borderRight: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
+    [`&.${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].disabled}`]: {
+      borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`
+    }
+  }, ownerState.variant === 'contained' && ownerState.orientation === 'vertical' && {
+    borderBottom: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
+    [`&.${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].disabled}`]: {
+      borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`
+    }
+  }, ownerState.variant === 'contained' && ownerState.color !== 'inherit' && {
+    borderColor: (theme.vars || theme).palette[ownerState.color].dark
+  }, {
+    '&:hover': (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.variant === 'outlined' && ownerState.orientation === 'horizontal' && {
+      borderRightColor: 'currentColor'
+    }, ownerState.variant === 'outlined' && ownerState.orientation === 'vertical' && {
+      borderBottomColor: 'currentColor'
+    })
+  }),
+  [`& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].lastButton},& .${_buttonGroupClasses__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.orientation === 'horizontal' && {
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0
+  }, ownerState.orientation === 'vertical' && {
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0
+  }, ownerState.variant === 'outlined' && ownerState.orientation === 'horizontal' && {
+    marginLeft: -1
+  }, ownerState.variant === 'outlined' && ownerState.orientation === 'vertical' && {
+    marginTop: -1
+  })
+}));
+const ButtonGroup = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function ButtonGroup(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_10__["default"])({
+    props: inProps,
+    name: 'MuiButtonGroup'
+  });
+  const {
+      children,
+      className,
+      color = 'primary',
+      component = 'div',
+      disabled = false,
+      disableElevation = false,
+      disableFocusRipple = false,
+      disableRipple = false,
+      fullWidth = false,
+      orientation = 'horizontal',
+      size = 'medium',
+      variant = 'outlined'
+    } = props,
+    other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(props, _excluded);
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, props, {
+    color,
+    component,
+    disabled,
+    disableElevation,
+    disableFocusRipple,
+    disableRipple,
+    fullWidth,
+    orientation,
+    size,
+    variant
+  });
+  const classes = useUtilityClasses(ownerState);
+  const context = react__WEBPACK_IMPORTED_MODULE_2__.useMemo(() => ({
+    className: classes.grouped,
+    color,
+    disabled,
+    disableElevation,
+    disableFocusRipple,
+    disableRipple,
+    fullWidth,
+    size,
+    variant
+  }), [color, disabled, disableElevation, disableFocusRipple, disableRipple, fullWidth, size, variant, classes.grouped]);
+  const validChildren = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_11__["default"])(children);
+  const childrenCount = validChildren.length;
+  const getButtonPositionClassName = index => {
+    const isFirstButton = index === 0;
+    const isLastButton = index === childrenCount - 1;
+    if (isFirstButton && isLastButton) {
+      return '';
+    }
+    if (isFirstButton) {
+      return classes.firstButton;
+    }
+    if (isLastButton) {
+      return classes.lastButton;
+    }
+    return classes.middleButton;
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ButtonGroupRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    as: component,
+    role: "group",
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_3__["default"])(classes.root, className),
+    ref: ref,
+    ownerState: ownerState
+  }, other, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ButtonGroupContext__WEBPACK_IMPORTED_MODULE_12__["default"].Provider, {
+      value: context,
+      children: validChildren.map((child, index) => {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ButtonGroupButtonContext__WEBPACK_IMPORTED_MODULE_13__["default"].Provider, {
+          value: getButtonPositionClassName(index),
+          children: child
+        }, index);
+      })
+    })
+  }));
+});
+ true ? ButtonGroup.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().node),
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().object),
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'primary'
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string)]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().elementType),
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * If `true`, no elevation is used.
+   * @default false
+   */
+  disableElevation: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * If `true`, the button keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * If `true`, the button ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * If `true`, the buttons will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * The component orientation (layout flow direction).
+   * @default 'horizontal'
+   */
+  orientation: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOf(['horizontal', 'vertical']),
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense button styling.
+   * @default 'medium'
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOf(['small', 'medium', 'large']), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string)]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_14___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_14___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().object)]),
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOf(['contained', 'outlined', 'text']), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ButtonGroup);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/ButtonGroup/ButtonGroupButtonContext.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/@mui/material/ButtonGroup/ButtonGroupButtonContext.js ***!
@@ -5298,6 +5622,30 @@ if (true) {
   ButtonGroupContext.displayName = 'ButtonGroupContext';
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ButtonGroupContext);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ButtonGroup/buttonGroupClasses.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@mui/material/ButtonGroup/buttonGroupClasses.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getButtonGroupUtilityClass: () => (/* binding */ getButtonGroupUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/utils/generateUtilityClasses */ "./node_modules/@mui/utils/generateUtilityClasses/generateUtilityClasses.js");
+/* harmony import */ var _mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/utils/generateUtilityClass */ "./node_modules/@mui/utils/generateUtilityClass/generateUtilityClass.js");
+
+
+function getButtonGroupUtilityClass(slot) {
+  return (0,_mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiButtonGroup', slot);
+}
+const buttonGroupClasses = (0,_mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiButtonGroup', ['root', 'contained', 'outlined', 'text', 'disableElevation', 'disabled', 'firstButton', 'fullWidth', 'vertical', 'grouped', 'groupedHorizontal', 'groupedVertical', 'groupedText', 'groupedTextHorizontal', 'groupedTextVertical', 'groupedTextPrimary', 'groupedTextSecondary', 'groupedOutlined', 'groupedOutlinedHorizontal', 'groupedOutlinedVertical', 'groupedOutlinedPrimary', 'groupedOutlinedSecondary', 'groupedContained', 'groupedContainedHorizontal', 'groupedContainedVertical', 'groupedContainedPrimary', 'groupedContainedSecondary', 'lastButton', 'middleButton']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (buttonGroupClasses);
 
 /***/ }),
 
@@ -21179,6 +21527,33 @@ function getScrollbarSize(doc) {
 
 /***/ }),
 
+/***/ "./node_modules/@mui/utils/getValidReactChildren/getValidReactChildren.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@mui/utils/getValidReactChildren/getValidReactChildren.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getValidReactChildren)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * Gets only the valid children of a component,
+ * and ignores any nullish or falsy child.
+ *
+ * @param children the children
+ */
+function getValidReactChildren(children) {
+  return react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(children).filter(child => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(child));
+}
+
+/***/ }),
+
 /***/ "./node_modules/@mui/utils/integerPropType/integerPropType.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@mui/utils/integerPropType/integerPropType.js ***!
@@ -26454,34 +26829,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _RoomJoinPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RoomJoinPage */ "./src/components/RoomJoinPage.js");
 /* harmony import */ var _CreateRoomPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreateRoomPage */ "./src/components/CreateRoomPage.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
 /* harmony import */ var _Room__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Room */ "./src/components/Room.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 
 
 
 
 
-class HomePage extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
-      path: "/",
-      element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "This is the home page")
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
-      path: "/join",
-      element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RoomJoinPage__WEBPACK_IMPORTED_MODULE_1__["default"], null)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
-      path: "/create",
-      element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreateRoomPage__WEBPACK_IMPORTED_MODULE_2__["default"], null)
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
-      path: "/room/:roomCode",
-      element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Room__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-    })));
-  }
-}
+
+const HomePage = () => {
+  const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    roomCode: null
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetch("/api/user-in-room").then(response => response.json()).then(data => {
+      setState({
+        roomCode: data.code
+      });
+    });
+  }, []);
+  const renderHomePage = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      container: true,
+      spacing: 3
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      item: true,
+      xs: 12,
+      align: "center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      variant: "h3",
+      compact: "h3"
+    }, "House Party")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      item: true,
+      xs: 12,
+      align: "center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      disableElevation: true,
+      variant: "contained",
+      color: "primary"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      color: "primary",
+      to: "/join",
+      component: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link
+    }, "Join a Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      color: "secondary",
+      to: "/create",
+      component: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link
+    }, "Create a Room"))));
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    path: "/",
+    element: state.roomCode ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
+      to: `/room/${state.roomCode}`
+    }) : renderHomePage()
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    path: "/join",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RoomJoinPage__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    path: "/create",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreateRoomPage__WEBPACK_IMPORTED_MODULE_2__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    path: "/room/:roomCode",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Room__WEBPACK_IMPORTED_MODULE_3__["default"], null)
+  })));
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomePage);
 
 /***/ }),
@@ -26646,7 +27062,9 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     super(props);
   }
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"], null));
   }
 }
 const appDiv = document.getElementById("app");
