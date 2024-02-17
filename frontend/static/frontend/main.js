@@ -26711,18 +26711,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const CreateRoomPage = () => {
-  let defaultVotes = 2;
+  let {
+    defaultVotes
+  } = 2;
   const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     guestCanPause: true,
-    votesToSkip: undefined.defaultVotes
+    votesToSkip: defaultVotes
   });
   const handleVotesChange = e => {
-    undefined.setState({
+    setState({
       votesToSkip: e.target.value
     });
   };
   const handleGuestCanPauseChange = e => {
-    undefined.setState({
+    setState({
       guestCanPause: e.target.value === "true" ? true : false
     });
   };
@@ -26915,7 +26917,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+
 
 
 const Room = () => {
@@ -26924,9 +26931,20 @@ const Room = () => {
     guestCanPause: false,
     isHost: false
   });
+  const LeaveButtonPressed = () => {
+    let requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      }
+    };
+    fetch("/api/leave-room", requestOptions).then(_response => {
+      (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.redirect)("/");
+    });
+  };
   let {
     roomCode
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)();
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useParams)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     getRoomDetails();
   }, [roomCode]);
@@ -26939,7 +26957,42 @@ const Room = () => {
       });
     });
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, roomCode), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Votes: ", state.votesToSkip), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Guest Can Pause: ", state.guestCanPause.toString()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Host: ", state.isHost.toString()));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    container: true,
+    spacing: 1
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "h3"
+  }, "Code:", roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "p"
+  }, "Votes To Skip :", state.votesToSkip)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "p"
+  }, "Guest Can Pause: ", state.guestCanPause.toString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "p"
+  }, "Host:", state.isHost.toString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "contained",
+    color: "secondary",
+    onClick: LeaveButtonPressed
+  }, "Leave Room")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Room);
 

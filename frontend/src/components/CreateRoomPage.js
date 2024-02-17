@@ -4,21 +4,21 @@ import {
   FormControlLabel,RadioGroup,Radio,FormControl,FormHelperText,TextField,Typography,Grid,Button
 } from "@mui/material";
 const CreateRoomPage =() => {
-  let defaultVotes = 2;
+  let { defaultVotes } = 2;
 
   const [state,setState]=useState({
     guestCanPause: true,
-    votesToSkip: this.defaultVotes,
+    votesToSkip: defaultVotes,
   });
 
   const handleVotesChange=(e)=> {
-    this.setState({
+    setState({
       votesToSkip: e.target.value,
     });
   }
 
   const handleGuestCanPauseChange=(e)=> {
-    this.setState({
+    setState({
       guestCanPause: e.target.value === "true" ? true : false,
     });
   }
