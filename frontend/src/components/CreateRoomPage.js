@@ -12,15 +12,17 @@ const CreateRoomPage =() => {
   });
 
   const handleVotesChange=(e)=> {
-    setState({
+    setState(prevState => ({
+      ...prevState,
       votesToSkip: e.target.value,
-    });
+    }));
   }
 
   const handleGuestCanPauseChange=(e)=> {
-    setState({
+    setState(prevState => ({
+      ...prevState,
       guestCanPause: e.target.value === "true" ? true : false,
-    });
+    }));
   }
 
   const handleRoomButtonPressed=()=> {

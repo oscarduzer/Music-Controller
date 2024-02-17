@@ -47,14 +47,18 @@ const HomePage = () => {
       </Grid>
     );
   };
-
+  const clearRoomCode=()=> {
+    setState({
+      roomCode: null,
+    });
+  }
   return (
     <Router>
       <Routes>
         <Route path="/" element={state.roomCode ? <Navigate to={`/room/${state.roomCode}`} /> : renderHomePage()} />
         <Route path="/join" element={<RoomJoinPage />} />
         <Route path="/create" element={<CreateRoomPage />} />
-        <Route path="/room/:roomCode" element={<Room />} />
+        <Route path="/room/:roomCode" element={<Room leaveRoomCallback={clearRoomCode} />}/>
       </Routes>
     </Router>
   );

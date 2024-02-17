@@ -26719,14 +26719,16 @@ const CreateRoomPage = () => {
     votesToSkip: defaultVotes
   });
   const handleVotesChange = e => {
-    setState({
+    setState(prevState => ({
+      ...prevState,
       votesToSkip: e.target.value
-    });
+    }));
   };
   const handleGuestCanPauseChange = e => {
-    setState({
+    setState(prevState => ({
+      ...prevState,
       guestCanPause: e.target.value === "true" ? true : false
-    });
+    }));
   };
   const handleRoomButtonPressed = () => {
     const requestOptions = {
@@ -26884,6 +26886,11 @@ const HomePage = () => {
       component: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link
     }, "Create a Room"))));
   };
+  const clearRoomCode = () => {
+    setState({
+      roomCode: null
+    });
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/",
     element: state.roomCode ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
@@ -26897,7 +26904,9 @@ const HomePage = () => {
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_CreateRoomPage__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/room/:roomCode",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Room__WEBPACK_IMPORTED_MODULE_3__["default"], null)
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Room__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      leaveRoomCallback: clearRoomCode
+    })
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomePage);
@@ -26917,81 +26926,92 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/@remix-run/router/dist/router.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 
 
 
-const Room = () => {
+const Room = props => {
   const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     votesToSkip: 2,
     guestCanPause: false,
     isHost: false
   });
-  const LeaveButtonPressed = () => {
-    let requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      }
-    };
-    fetch("/api/leave-room", requestOptions).then(_response => {
-      (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.redirect)("/");
-    });
-  };
   let {
     roomCode
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useParams)();
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)();
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     getRoomDetails();
-  }, [roomCode]);
+  }, []);
   const getRoomDetails = () => {
-    fetch("/api/get-room" + "?code=" + roomCode).then(response => response.json()).then(data => {
+    return fetch("/api/get-room" + "?code=" + roomCode).then(response => {
+      if (!response.ok) {
+        props.leaveRoomCallback();
+        navigate("/");
+      }
+      return response.json();
+    }).then(data => {
       setState({
-        votesToSkip: data.vote_to_skip,
+        votesToSkip: data.votes_to_skip,
         guestCanPause: data.guest_can_pause,
         isHost: data.is_host
       });
     });
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  const leaveButtonPressed = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    fetch("/api/leave-room", requestOptions).then(_response => {
+      props.leaveRoomCallback();
+      navigate("/");
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
     container: true,
     spacing: 1
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "h4",
+    component: "h4"
+  }, "Code: ", roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "h6",
+    component: "h6"
+  }, "Votes: ", state.votesToSkip)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "h6",
+    component: "h6"
+  }, "Guest Can Pause: ", state.guestCanPause.toString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    align: "center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "h6",
+    component: "h6"
+  }, "Host: ", state.isHost.toString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
     item: true,
     xs: 12,
     align: "center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "h3"
-  }, "Code:", roomCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    item: true,
-    xs: 12,
-    align: "center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "p"
-  }, "Votes To Skip :", state.votesToSkip)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    item: true,
-    xs: 12,
-    align: "center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "p"
-  }, "Guest Can Pause: ", state.guestCanPause.toString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    item: true,
-    xs: 12,
-    align: "center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "p"
-  }, "Host:", state.isHost.toString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    item: true,
-    xs: 12,
-    align: "center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
     variant: "contained",
     color: "secondary",
-    onClick: LeaveButtonPressed
+    onClick: leaveButtonPressed
   }, "Leave Room")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Room);
