@@ -15,8 +15,8 @@ function HomePage() {
           .then((response) => response.json())
           .then((data) => {
             setState({
-              roomCode: data.code,
-            });
+                roomCode: data.code,
+              }); 
           })
       }, []);
 const homeRender=()=>{

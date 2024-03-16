@@ -28,9 +28,7 @@ function Room (props) {
         .catch(e=>console.log(e))
     }
 
-    const updateRoom=(value)=>{
-        setState({setting:value})
-    }
+    
 
     const settingRender=()=>{
         return (
@@ -40,8 +38,15 @@ function Room (props) {
                     roomCode={roomCode}
                     guestCanPause={state.guestCanPause}
                     votesToSkip={state.votesToSkip}
+                    update={true}
+                    updateRoomCallBack={getRoomDetails}
                     />
                </Grid>
+               <Grid item xs={12} align="center">
+                <Button color="secondary" onClick={()=> setState({setting:false})} variant="contained">
+                    Close
+                </Button>
+            </Grid>
             </Grid>
         )
     }
@@ -90,7 +95,7 @@ function Room (props) {
                         
                         <Grid item xs={6} align="center">
                             <Button variant="contained" color="primary" onClick={()=>{
-                                updateRoom(true)
+                                 setState({setting:true})
                             }}>
                               Setting
                             </Button>
